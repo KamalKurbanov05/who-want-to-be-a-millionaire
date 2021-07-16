@@ -1,0 +1,65 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 10vh;
+    margin-bottom: 10vh;
+    background-color: #20232a;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 10vw;
+}
+
+.header__logo {
+    cursor: pointer;
+}
+
+.header__prompt-btn {
+    background: none;
+    border: none;
+    color: #61dafb;
+    position: relative;
+    padding: 0 4px;
+    transition: all .5s ease-in-out;
+}
+
+.header__prompt-btn:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px #61dafb;
+}
+
+.header__prompt-btn::after {
+    content: " ";
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background-color: #61dafb;
+    top: 0;
+    right: 0;
+}
+
+.header__prompt-btn:last-child::after {
+    content: none;
+}
+
+.header__end-game-btn {
+    width: 6vw;
+    height: 6vh;
+    border-radius: 4px;
+    background: #61dafb;
+    color: black;
+    margin-left: 200px;
+    font-weight: 500;
+}
+
+.header__btn-block {
+    display: flex;
+    align-items: center;
+}
+
+.header__prompt-block {
+    border: 1px solid #61dafb;
+    border-radius: 4px;
+}

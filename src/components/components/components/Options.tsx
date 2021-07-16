@@ -1,48 +1,86 @@
-import React from "react";
+import React, {useState} from "react";
+import "./css/Option.css"
 
 export default function Options(props: any) {
+    const [background, setBackground] = useState("black")
+    
+    //формируем массив состоящий из массивов с парами имя свойства и занчение свойства
+    let keyValueArrOfPrompt = Object.entries(props.promptGame);
 
-    let keyValueArrOfPrompt = Object.entries(props.promptGame)
-    console.log("keyValueArrOfPrompt" ,keyValueArrOfPrompt)
+    //функция для обработки правильных ответов
+    let handlerOption = (option: [string, boolean, number]) => {
 
-    let handlerOption = (option: boolean) => {
-        if (option) {
-            for (let option of keyValueArrOfPrompt) {
-                if (option[1] && option[0] !== "lastUsePrompt") {
-                    let promptObject: any = {};
-                    promptObject[option[0]] = null;
-                    console.log("promptObject" ,promptObject)
-                    props.changeStep(props.step + 1);
-                    props.changeStatePromptGame(promptObject)
+        if (option[1]) {
+            setTimeout(() => setBackground("blue"), 500);
+            setTimeout(() => setBackground("black"), 1000);
+            setTimeout(() => setBackground("blue"), 1500);
+            setTimeout(() => setBackground("black"), 2000);
+            setTimeout(() => props.changeStateGame(
+                {
+                    step: props.step + 1,
+                    gain: option[2]
                 }
-            }
+            ), 2300)
+            setTimeout(() => {
+                let promptObject: any = {};
+
+                for (let option of keyValueArrOfPrompt) {
+                    if (option[1] && option[0] !== "lastUsePrompt") {
+                        promptObject[option[0]] = null;
+                        promptObject.lastUsePrompt = null;
+                        promptObject.unCorrectOption = null;
+                    }
+                    props.changeStatePromptGame(promptObject);
+                }
+            }, 2300)
         } else {
-            console.log("we here, notcorrect answer")
             props.changeStep(null);
         }
     }
 
-    console.log("props.promptGame", props.promptGame)
-    
-    // console.log(correctAnswer[0][0])
-    if (props.promptGame.fiftyOnFity) {
+    if (props.promptGame.fiftyOnFifty) {
         return (
                 <>
-                    <li onClick={() => handlerOption(props.correctAnswer[0][1])}>
+                    <li
+                        className={`option ${background}`}
+                        onClick={() => handlerOption(props.correctAnswer[0])}
+                    >
                         {props.correctAnswer[0][0]}
                     </li>
-                    <li onClick={() => handlerOption(props.randomOption[1])}>
-                        {props.randomOption[0]}
+                    <li
+                        className="option"
+                        onClick={() => handlerOption(props.randomOption)}
+                    >
+                        {props.promptGame.unCorrectOption}
                     </li>
                 </>
             )
     } else {
         return (
             <>
-                {props.options.map((option: [string, boolean, number], index: number) =>
-                    <li onClick={() => handlerOption(option[1])} key={index}>
-                        {option[0]}
-                    </li>
+                {props.options.map((option: [string, boolean, number], index: number) => {
+                    if (option[1]) {
+                        return (
+                            <li 
+                                onClick={() => handlerOption(option)} 
+                                key={index}
+                                className={`option ${background}`}
+                            >
+                                {option[0]}
+                            </li>
+                        )
+                    } else {
+                        return (
+                            <li 
+                                onClick={() => handlerOption(option)} 
+                                key={index}
+                                className="option"
+                            >
+                                {option[0]}
+                            </li>
+                        )
+                    }
+                }
                 )}
             </>
         )

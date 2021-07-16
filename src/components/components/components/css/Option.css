@@ -1,0 +1,27 @@
+.option {
+    width: 28vw;
+    height: 6vh;
+    background: black;
+    color: white;
+    clip-path: polygon(19% 0, 83% 0, 100% 50%, 79% 100%, 22% 100%, 0% 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+    transition: all 0.3 ease-in-out;
+}
+
+.option:hover {
+    cursor: pointer;
+    box-shadow: 0 0 40px #61dafb;
+    border-top: 1px solid #61dafb;
+    border-bottom: 1px solid #61dafb;
+}
+
+.black {
+    background-color: black;
+}
+
+.blue {
+    background-color: #61dafb;
+}
