@@ -137,6 +137,15 @@ export default function MainField (): any {
 
     let handlerBtnStartOver = (): void => {
         changeStep(0);
+        setPromptGame(
+            {
+                lastUsePrompt: null,
+                fiftyOnFifty: false,
+                callFriend: false,
+                promptHall: false,
+                unCorrectOption: null,
+            }
+        )
     }
 
     console.log(promptGame)
@@ -157,6 +166,7 @@ export default function MainField (): any {
                 </header>
                 <main className="main">
                     <div className="rules-block-about-prompt">
+                        <h4 className="notification">Подсказки</h4>
                         <label className="rules-block-about-prompt__label">
                             <svg 
                                         xmlns="http://www.w3.org/2000/svg"

@@ -63,6 +63,7 @@
 .notification {
     color: #61dafb;
     font-size: 100px;
+    margin: 0;
 }
 
 .btn:hover {
