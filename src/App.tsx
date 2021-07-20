@@ -1,5 +1,5 @@
 import React from 'react';
-import MainField from "./components/MainField"
+import MainField from "./components/MainField/MainField"
 
 function App() {
   return (

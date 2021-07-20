@@ -24,6 +24,9 @@
     padding: 0 4px;
     transition: all .5s ease-in-out;
 }
+.header__prompt-btn:disabled {
+    opacity: .4;
+}
 
 .header__prompt-btn:hover {
     cursor: pointer;
