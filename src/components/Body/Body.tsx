@@ -55,7 +55,6 @@ export default function Body(props: any) {
                 </div>
             </div>
             <div>
-                
                 <div
                     className="call-friend"
                     style=
@@ -70,7 +69,7 @@ export default function Body(props: any) {
                     </div>
                     <div className="call-friend__img"/>
                 </div>
-                <div 
+                <div
                     className="prompt-hall"
                     style=
                         {
@@ -97,11 +96,11 @@ export default function Body(props: any) {
                                     return (
                                         <div
                                             key={index}
-                                            style={{display: index > 1? "none": "block"}}
-                                            className="prompt-hall__section thirty-percent" 
+                                            style={{display: index > 0? "none": "block"}}
+                                            className="prompt-hall__section thirty-percent"
                                         >
                                             {props.promptGame.unCorrectOption[0]}
-                                        </div> 
+                                        </div>
                                     )
                                 } else {
                                     return (
@@ -121,9 +120,7 @@ export default function Body(props: any) {
                 </div>
             </div>
             <div className="main__round-block">
-                <div className="main__question">
-                    <Question question={round.question}/>
-                </div>
+                <Question question={round.question}/>
                 <ul className="main__option-block">
                     <Options
                         changeGain={props.changeGain}

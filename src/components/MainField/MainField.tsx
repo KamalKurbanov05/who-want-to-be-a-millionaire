@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import Header from "../Header/Header";
 import Body from "../Body/Body";
-import "./css/MainField.css"
 import FiftyOnFiftyIcon from "../../icons/FiftyOnFiftyIcon";
 import PhoneIcon from "../../icons/PhoneIcon";
 import CrowdIcon from "../../icons/CrowdIcon";
 import ReactIcon from "../../icons/ReactIcon";
+import "./css/MainField.css"
 
 export interface Iround {
     question: string,
@@ -39,7 +39,7 @@ const ROUNDS: Array<Iround> = [
         options: [
             ["В новостной ленте Facebook", true, 100],
             ["В ICQ", false, 0],
-            ["Worl of Tancks", false, 0],
+            ["World of Tancks", false, 0],
             ["На даче у бабушки Лизы в огороде", false, 0],
         ]
     },
@@ -57,7 +57,7 @@ const ROUNDS: Array<Iround> = [
         options: [
             ["Хорошо скоротать время", false, 0],
             ["Для разработки операционных систем", false, 0],
-            ["Для разработки нативных мобильных и настольных приложений на JavaScript и TypeScript", true, 600],
+            ["Для разработки мобильных приложений", true, 600],
             ["Для полетов в космос", false, 0],
         ]
     },
@@ -80,9 +80,6 @@ export default function MainField (): any {
             unCorrectOption: null,
         })
 
-    console.log("stateGame" ,stateGame);
-    console.log("stateGame" ,promptGame);
-
     const wordForOptions = ["A : ", "B : ", "C : ", "D : ",]
 
     const listRounds:any = ROUNDS.map(round => {
@@ -94,9 +91,7 @@ export default function MainField (): any {
         )
     })
 
-    console.log("ACTUAL listRounds", listRounds)
-
-    let changeStatePromptGame = (obj: object): void => {
+    let changeStatePromptGame = (obj: IstateGame): void => {
         setPromptGame(Object.assign({}, promptGame, obj)
         )
     }
@@ -140,7 +135,12 @@ export default function MainField (): any {
     }
 
     let handlerBtnStartOver = (): void => {
-        changeStep(0);
+        setStateGame(
+            {
+                step: 0,
+                startGame: true,
+                gain: 0,
+            })
         setPromptGame(
             {
                 lastUsePrompt: null,
@@ -151,9 +151,6 @@ export default function MainField (): any {
             }
         )
     }
-
-    console.log(promptGame)
-    console.log(stateGame)
 
     if (!stateGame.startGame) {
         return (
@@ -204,13 +201,13 @@ export default function MainField (): any {
                         <main className="main">
                             <h2 className="notification">Вы победили )</h2>
                             <div className="btn-block">
-                                <button 
+                                <button
                                     onClick={handlerBtnStartOver}
                                     className="btn"
                                 >
                                     Начать заново
                                 </button>
-                                <button 
+                                <button
                                     onClick={handlerBtnCompleteGame}
                                     className="btn"
                                 >
@@ -223,7 +220,7 @@ export default function MainField (): any {
             } else {
                 return(
                     <>
-                        <Header 
+                        <Header
                             changeStatePromptGame={changeStatePromptGame}
                             promptGame={promptGame}
                             changeStateGame={changeStateGame}
