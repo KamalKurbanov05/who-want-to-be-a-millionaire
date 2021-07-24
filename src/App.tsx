@@ -1,9 +1,9 @@
 import React from 'react';
-import MainField from "./components/MainField/MainField"
+import MainPage from "./components/MainPage/MainPaige";
 
 function App() {
   return (
-    <MainField />
+    <MainPage/>
   )
 }
 

@@ -1,24 +1,28 @@
 import React from "react";
-import {Iround} from "../MainField/MainField";
-import FiftyOnFiftyIcon from "../../icons/FiftyOnFiftyIcon";
-import ReactIcon from "../../icons/ReactIcon";
-import PhoneIcon from "../../icons/PhoneIcon";
-import CrowdIcon from "../../icons/CrowdIcon";
+import {Iround} from "../../MainPaige";
+import Button from '@material-ui/core/Button';
+import { makeStyles, createStyles, Theme} from '@material-ui/core/styles';
+import FiftyOnFiftyIcon from "../../../../icons/FiftyOnFiftyIcon"; 
+import ReactIcon from "../../../../icons/ReactIcon";
+import PhoneIcon from "../../../../icons/PhoneIcon";
+import CrowdIcon from "../../../../icons/CrowdIcon";
+import { customStyle } from "../../MainPaige";
 import "./css/Header.css";
 
+
 export default function Header(props:any) {
-    console.log("round" , props.listRounds);
-    console.log("step", props.step)
+    const classes = customStyle()
+
     const round: Iround = props.listRounds[props.step];
 
-    let generateRandomNumberForOptions = (range:number): number => {
+    const generateRandomNumberForOptions = (range:number): number => {
         return Math.floor(Math.random() * range)
     }
 
     //выборка радномного ответа из числа неправильных
-    let randomOption: [string, boolean, number] = round.options.filter((option: [string, boolean, number]): boolean => !option[1])[generateRandomNumberForOptions(3)]
+    const randomOption: [string, boolean, number] = round.options.filter((option: [string, boolean, number]): boolean => !option[1])[generateRandomNumberForOptions(3)]
 
-    let handlerBtnOfStartOrEnd = (): void => {
+    const handlerBtnOfStartOrEnd = (): void => {
         if (props.startGame) {
             props.changeStateGame(
                 {
@@ -41,7 +45,7 @@ export default function Header(props:any) {
         }
     }
 
-    let handlerFiftyOnFifty = (): void => {
+    const handlerFiftyOnFifty = (): void => {
         props.changeStatePromptGame(
             {
                 lastUsePrompt: "fiftyOnFifty",
@@ -50,7 +54,7 @@ export default function Header(props:any) {
             });
     }
 
-    let handlerCallFriend = (): void => {
+    const handlerCallFriend = (): void => {
         props.changeStatePromptGame(
             {
                 lastUsePrompt: "callFriend",
@@ -58,7 +62,7 @@ export default function Header(props:any) {
             });
     }
 
-    let handlerHelpHall = (): void => {
+    const handlerHelpHall = (): void => {
         props.changeStatePromptGame(
             {
                 lastUsePrompt: "promptHall",
@@ -75,35 +79,43 @@ export default function Header(props:any) {
                     <ReactIcon/>
                 </a>
                 <div className="header__btn-block">
-                    <div className="header__prompt-block">
-                        <button 
+                    <div>
+                        <Button
+                            className={classes.style}
+                            variant="contained"
+                            color= "secondary"
                             disabled={props.promptGame.fiftyOnFifty === null || props.promptGame.fiftyOnFifty || !props.startGame? true: false}
                             onClick={handlerFiftyOnFifty}
-                            className="header__prompt-btn"
                         >
-                            <FiftyOnFiftyIcon/>
-                        </button>
-                        <button
+                            50 на 50
+                       </Button>
+                        <Button
+                            className={classes.style}
+                            variant="contained"
+                            color="secondary"
                             disabled={props.promptGame.callFriend === null || props.promptGame.callFriend || !props.startGame? true: false}
                             onClick={handlerCallFriend}
-                            className="header__prompt-btn"
                         >
-                            <PhoneIcon/>
-                        </button>
-                        <button
+                            Помощь друга
+                        </Button>
+                        <Button
+                            className={classes.style}
+                            variant="contained"
+                            color="secondary"
                             disabled={props.promptGame.promptHall === null || props.promptGame.promptHall || !props.startGame? true: false}
                             onClick={handlerHelpHall}
-                            className="header__prompt-btn"
                         >
-                            <CrowdIcon/>
-                        </button>
+                            Помощь зала
+                        </Button>
                     </div>
-                    <button 
+                    <Button
+                        className={classes.style}
+                        variant="contained"
+                        color="primary"
                         onClick={handlerBtnOfStartOrEnd}
-                        className="header__prompt-btn header__end-game-btn"
                     >
                         {props.startGame? "Завершить игру": "Начать игру"}
-                    </button>
+                    </Button>
                 </div>
             </header>
     )

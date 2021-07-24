@@ -1,7 +1,7 @@
 import React from "react";
-import Question from "../Question/Question";
-import Options from "../Options/Options";
-import {Iround} from "../MainField/MainField";
+import Question from "../Body/components/Question/Question";
+import Options from "../Body/components/Options/Options";
+import {Iround} from "../../MainPaige";
 import "./css/Body.css";
 
 
