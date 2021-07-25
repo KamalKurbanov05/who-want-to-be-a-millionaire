@@ -1,16 +1,9 @@
 import React from "react";
 import ReactIcon from "../../../../icons/ReactIcon";
 import Button from "@material-ui/core/Button";
-import {classes} from "../../MainPaige";
+import {handlersAndStyleForWineLosse} from "../../MainPaige";
 
-
-interface  losseGame {
-    handlerBtnStartOver: () => void,
-    handlerBtnCompleteGame: () => void,
-    classes: classes,
-}
-
-export default function LosseGame(props: losseGame) {
+export default function LosseGame(props: handlersAndStyleForWineLosse) {
     return (
         <>
             <header className="header">

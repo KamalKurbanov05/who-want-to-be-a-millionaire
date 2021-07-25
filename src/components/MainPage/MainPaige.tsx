@@ -42,6 +42,14 @@ interface IpromptGame {
     unCorrectOption: string| null,
 }
 
+
+export interface handlersAndStyleForWineLosse {
+    handlerBtnStartOver: () => void,
+    handlerBtnCompleteGame: () => void,
+    classes: classes,
+}
+
+
 const ROUNDS: Array<Iround> = [
     {
         question: "Где вперавые нашел применение React ?",
@@ -176,7 +184,6 @@ export default function MainField (): any {
                     listRounds={listRounds}
                     step={stateGame.step}
                 />
-        
     } else {
         if (typeof stateGame.step === "number") {
             stateGame.step === listRounds.length ?
@@ -221,9 +228,9 @@ export default function MainField (): any {
                                 classes={classes}
                             />
                         </>
-
         }
     }
+
     return (
         forRender
     )

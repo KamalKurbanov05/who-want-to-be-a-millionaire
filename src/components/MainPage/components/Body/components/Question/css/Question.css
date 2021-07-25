@@ -1,0 +1,12 @@
+
+.main__question {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 100px;
+    min-height: 14vh;
+    background: #61dafb;
+    color: white;
+    clip-path: polygon(19% 0, 83% 0, 100% 50%, 79% 100%, 22% 100%, 0% 50%);
+
+}

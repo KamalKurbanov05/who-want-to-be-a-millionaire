@@ -22,6 +22,8 @@ export default function Body(props: any) {
             "three-percent",
         ]
 
+    let counter: number = 0;
+
     return (
         <div className="main">
             <div className="block-cash">
@@ -79,6 +81,7 @@ export default function Body(props: any) {
                         }
                 >
                     {round.options.map((option: [string, boolean, number], index: number): any => {
+                        
                         if (option[1]) {
                             return (
                                 <div 
@@ -89,33 +92,34 @@ export default function Body(props: any) {
                                 </div>
                             )
                         } else {
-                            let randNum: number = generateRandomNumberForOptions(stylesArrPromptHall.length)
-                            let promptHallSection = stylesArrPromptHall[randNum]
-                            stylesArrPromptHall = stylesArrPromptHall.filter((styleName: string) => styleName !== promptHallSection)
-                                if (props.promptGame.fiftyOnFifty) {
-                                    return (
-                                        <div
-                                            key={index}
-                                            style={{display: index > 0? "none": "block"}}
-                                            className="prompt-hall__section thirty-percent"
-                                        >
-                                            {props.promptGame.unCorrectOption[0]}
-                                        </div>
-                                    )
-                                } else {
-                                    return (
-                                        <div
-                                            style={{display: props.promptGame.fiftyOnFifty? "none": "block"}}
-                                            className={"prompt-hall__section " + promptHallSection}
-                                            key={index}
-                                        >
-                                            {option[0][0]}
-                                        </div>
-                                    )
-                                }
+                            let randNum: number = generateRandomNumberForOptions(stylesArrPromptHall.length);
+                            let promptHallSection = stylesArrPromptHall[randNum];
+                            stylesArrPromptHall = stylesArrPromptHall.filter((styleName: string) => styleName !== promptHallSection);
+                            if (props.promptGame.fiftyOnFifty) {
+                                counter += 1;
+                                console.log(counter)
+                                return (
+                                    <div
+                                        key={index}
+                                        style={{display: counter > 1 ? "none": "block"}}
+                                        className="prompt-hall__section thirty-percent"
+                                    >
+                                        {props.promptGame.unCorrectOption[0]}
+                                    </div>
+                                )
+                            } else {
+                                return (
+                                    <div 
+                                        className={"prompt-hall__section " + promptHallSection}
+                                        key={index}
+                                    >
+                                        {option[0][0]}
+                                    </div>
+                                )
                             }
                         }
-                        )}
+                    }
+                    )}
                     <div/>
                 </div>
             </div>

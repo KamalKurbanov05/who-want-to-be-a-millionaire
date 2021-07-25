@@ -1,17 +1,9 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import ReactIcon from "../../../../icons/ReactIcon";
-import customStyle from "../../MainPaige";
-import {classes} from "../../MainPaige";
+import {handlersAndStyleForWineLosse} from "../../MainPaige";
 
-interface winGame {
-    handlerBtnStartOver: () => void,
-    handlerBtnCompleteGame: () => void,
-    classes: classes,
-}
-
-export default function WinGame(props: winGame) {
-    const classes = customStyle()
+export default function WinGame(props: handlersAndStyleForWineLosse) {    
     return (
         <>
             <header className="header">
